@@ -4,8 +4,9 @@
     "dev": "next dev -p 9000",
     "build": "next build",
     "start": "next start",
-    "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test": "jest --watchAll",
+    "test:ci": "jest --ci",
+    "commands": "ts-node ./bins/commands.ts"
   },
   "dependencies": {
     "@mysten/sui.js": "latest",
