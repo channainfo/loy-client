@@ -6,24 +6,26 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // https://suiexplorer.com/txblock/CqFnXtNyqUPEec2xP65DaFZuuUkgzvTc2d6sMaHFigTU?network=testnet
+type TargetID = `${string}::${string}::${string}`;
 class AdminRegisterPartner extends DaiTol.Executor {
   public async callAsync() {
 
     let signer = Utils.signer();
     const tx = new TransactionBlock();
 
-    let name = "PIZLOY";
-    let code = "PIZZA LOY";
-    let excerpt = "Pizza Loy Community";
-    let content = "zza Loy Community";
-    let logoUrl = "https://pizloy.xyz/pizloy/pizloy.png";
+    let name = "CTG";
+    let code = "CTG";
+    let excerpt = "Contigo";
+    let content = "Contigo Community";
+    let logoUrl = "https://contigo.xyz/ctg/ctg.png";
     let visibility = 1;
-    let tokenName = "PLOY";
+    let tokenName = "CTG";
     let ownerAddress = process.env.SUI_PARTNER_ADDRESS!
     let allowNFT = 1;
+    let target: TargetID = `${process.env.SUI_PCK_ADDRESS!}::main::admin_register_partner`;
 
     tx.moveCall({
-      target: `${process.env.SUI_PCK_ADDRESS!}::main::admin_register_partner`,
+      target: target,
       arguments: [
         tx.pure(`${process.env.SUI_ADMIN_CAP}`),
         tx.pure(name),
@@ -42,7 +44,7 @@ class AdminRegisterPartner extends DaiTol.Executor {
     const result = await signer.signAndExecuteTransactionBlock({
       transactionBlock: tx,
     });
-
+    console.log(`Call to contract: ${target}`);
     console.log(Utils.transactionBlockURL(result.digest))
   }
 }
