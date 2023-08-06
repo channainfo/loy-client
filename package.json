@@ -6,7 +6,8 @@
     "start": "next start",
     "test": "jest --watchAll",
     "test:ci": "jest --ci",
-    "commands": "ts-node ./bins/commands.ts"
+    "commands": "ts-node ./bins/commands.ts",
+    "keytool": "ts-node ./bins/keytool.ts"
   },
   "dependencies": {
     "@mysten/sui.js": "latest",
